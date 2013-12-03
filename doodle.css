@@ -1,0 +1,100 @@
+
+.PaintBox {
+	
+	
+}
+
+h2#logo a {
+	text-decoration: none;
+	color:#333;
+}
+
+.col1 {
+	float:left;
+	width:14%;
+}
+
+.col2 {
+	float:left;
+	width:64%;
+	
+}
+.col3 {
+	float:left;
+	width:19%;
+}
+
+.nav button.Erase {
+	float:none;
+}
+
+.PaperBox {
+	background:#fdd;
+	background-image:url("assets/paper-texture.jpg");
+	width:100%;
+	height:600px;
+	position: relative;
+	overflow: hidden;
+}
+/* These can move about */
+.Paper {
+	width:100%;
+	height:600px;
+	position: absolute;
+	top:0; left:0;
+}
+
+.Tool {
+	border:hidden 2px;
+}
+.Paint {
+	width:48px; height:48px;
+	margin:2px;
+}
+.ThingButton, .Thing {
+	width:48px;
+}
+.green { background:green; }
+
+.blue { background:blue; }
+.red { background:red; }
+.pink { background:pink; }
+.orange { background:orange; }
+.brown { background:brown; }
+.yellow { background:yellow; }
+.grey { background:grey; }
+.black { background:black; }
+
+.CommandBox {
+	border:hidden 2px;
+}
+.CodeBox div.Line {
+	margin:0;
+}
+.PlayBox {
+	margin:5px;
+}
+
+.Splodge {
+	width:30px; height:30px;
+	border-radius:15px;
+	position:absolute;
+}
+
+.is-running {
+	color:#c33;	
+}
+
+
+.is-selected {
+	border:solid 2px black !important;
+}
+div.is-active {
+	border:solid 2px red !important;
+}
+
+#dino {
+	background: transparent url(assets/dino.png) 0 0 repeat-y;
+	width:106px;
+	height:104px;	
+}

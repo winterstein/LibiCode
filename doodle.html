@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+			<link rel="shortcut icon" href="favicon.ico"/>
+	 	<meta name="HandheldFriendly" content="true" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		<!-- 57x57 icon <link rel="apple-touch-icon" href="launch-icon.png" /> -->
+	 	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<!-- Bootstrap -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="doodle.css" />
+
+		<script>
+/* Is this a mobile device? */
+if (navigator.userAgent.match('/mobile/Android|webOS|iPhone|iPad|iPod|BlackBerry/i')) {
+	window.isMobile = true;
+} else {
+	window.isMobile = false;
+}
+		</script>		
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+  
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<script src="lib/less.js" type="text/javascript"></script>
+
+  <script src="http://rawgithub.com/winterstein/SJTest/master/SJTest.js"></script>
+  <script>  	
+  	// SJTest.on = true;
+  </script>
+  
+  <script src="lib/ww/Object.js"></script>
+  <script src="lib/ww/Array.js"></script>
+  <script src="lib/ww/String.js"></script>
+  <script src="lib/ww/HashMap.js"></script>
+
+  <script src="lib/QuadTree.js"></script>
+  <script src="lib/jquery.rotate.js"></script>
+  <script src="lib/jquery.spritely.js"></script>
+  <script src="lib/jquery.bounds.js"></script>
+  
+<!-- <script src="lib/jquery.ui.touch-punch.js"></script>  -->
+
+	<script>
+	var WW = 'winterwell'; 
+	</script>
+  <script src="paint.js"></script>
+  <script src="doodle.js"></script>
+  <script src="snd.js"></script>
+  <script src="http://code.createjs.com/soundjs-0.5.0.min.js"></script>
+   <script src="save.js"></script>
+</head>
+<body>
+
+<!-- TODO replace prompt -->
+<div id='MsgModal' class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Type your message</h4>
+      </div>
+      <div class="modal-body">
+		<form onsubmit="return false;">
+			<input name='msg' />
+		</form>
+      </div>
+      </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div>
+
+	 <div class="col1">
+	 	<h2 id='logo'><a href='#'>LibiCode</a></h2>
+	 	<p><small>v 0.1</small></p>
+		<div class='PaintBox'><h3>Paint</h3>
+			<div class='Tool Paint red btn'></div>
+			<div class='Tool Paint pink btn'></div>
+			<div class='Tool Paint yellow btn'></div>
+			<div class='Tool Paint green btn'></div>
+			<div class='Tool Paint blue btn'></div>
+			<div class='Tool Paint brown btn'></div>
+			<div class='Tool Paint grey btn'></div>
+			<div class='Tool Paint black btn'></div>
+			
+			<!-- <img class='Tool ThingButton robot draggable' src='assets/robo-dino.png' />  -->
+			
+			<div id='dino' class='Tool dino draggable Scripted' data-name='Dinosaur'></div>			
+			<div style='height:100px; width:100px;'></div>
+			
+			<!-- <div class='Tool Delete btn'>delete</div>  -->
+		</div>
+		
+		<div class='btn btn-default' onclick="saveIt();">Save</div>
+		<a href='' id='savedas'></a>
+				
+	</div>
+	
+	<div class='col2'>
+			<!-- Nav tabs: 3 layers by default -->
+		<ul id='PaperTabs' class="nav nav-tabs">
+		  
+		  <li class='active' ><a href="#PaperThing1" class='PaperTab TouchClick' data-toggle="tab">Top doodle
+		  	&nbsp;&nbsp;
+		  	<button type="button" data-target='#PaperThing1' class="close Erase TouchClick" aria-hidden="true">
+		  		<small><span class="glyphicon glyphicon-trash"></span></small>
+		  	</button>
+		  </a>
+		  </li>
+		  <!-- <li><a href="#NewPaperThing" class='PaperTab NewPaperThing' data-toggle="tab">+
+		  </a></li> -->
+		  
+		  <li><a href="#PaperThing2" class='PaperTab TouchClick' data-toggle="tab">Middle doodle
+		  &nbsp;&nbsp;
+		  	<button type="button" data-target='#PaperThing2' class="close Erase TouchClick" aria-hidden="true">
+		  		<small><span class="glyphicon glyphicon-trash"></span></small>
+		  	</button>
+		  </a></li>
+		  
+		  <li><a href="#Paperbackground" class='PaperTab TouchClick' data-toggle="tab">Background layer
+		  &nbsp;&nbsp;
+		  	<button type="button" data-target='#Paperbackground' class="close Erase TouchClick" aria-hidden="true">
+		  		<small><span class="glyphicon glyphicon-trash"></span></small>
+		  	</button>
+		  </a></li>
+		  
+		</ul>
+			
+		<div class="PaperBox">
+	  		<div class="active Paper Scripted" id="PaperThing1" data-name='Top doodle'></div>
+	  		<div class="Paper Scripted" id="PaperThing2" data-name='Middle doodle'></div>
+			<div class="Paper Scripted" id="Paperbackground" data-name='Background doodle'></div>
+		</div>
+	</div>
+	
+	
+	 <div class="col3"><div class='container'>		
+	 	<h3 id='code4layer'>Code for layer</h3>
+		<div class='CodeBox'>
+		</div>
+		
+		<div class='CommandBox'><h3>Add Command?</h3>
+			<div class='Tool Cmd btn btn-default' data-cmd='up'><span class="glyphicon glyphicon-chevron-up"></span> up</div>
+			<div class='Tool Cmd btn btn-default' data-cmd='down'><span class="glyphicon glyphicon-chevron-down"></span>  down</div>
+			<div class='Tool Cmd btn btn-default' data-cmd='left'><span class="glyphicon glyphicon-chevron-left"></span> left</div>
+			<div class='Tool Cmd btn btn-default' data-cmd='right'><span class="glyphicon glyphicon-chevron-right"></span> right</div>
+			
+			<div class='Tool Cmd btn btn-default' data-cmd='spin-left'><i class="fa fa-rotate-left"></i> spin-left</div>
+			<div class='Tool Cmd btn btn-default' data-cmd='spin-right'><i class="fa fa-rotate-right"></i> spin-right</div>
+			
+			<div class='Tool Cmd btn btn-default' data-cmd='show'>show</div>
+			<div class='Tool Cmd btn btn-default' data-cmd='hide'>hide</div>
+		
+			<div class='Tool Cmd btn btn-default' data-cmd='wait'><i class="fa fa-clock-o"></i> wait</div>
+			<!-- <div class='Tool Cmd btn btn-default'><sup><span class="glyphicon glyphicon-star"></span></sup><sub><span class="glyphicon glyphicon-star"></span></sub></div> -->
+			<div class='Tool Cmd btn btn-default' data-cmd='sound'><span class="glyphicon glyphicon-volume-up"></span></div>
+
+		</div>		
+		
+		<div class='PlayBox'>
+			<div class="_btn-group" data-toggle="buttons">
+				<a class='PlayButton btn btn-lg btn-primary TouchClick' href='#play'><span class="glyphicon glyphicon-play"></span></a>
+				<a class='StopButton btn btn-lg btn-primary TouchClick disabled' href='#stop'><span class="glyphicon glyphicon-stop"></span></a>				
+			</div>
+		</div>		
+	</div></div><!-- ./col3 -->
+	
+</div>
+</body>
+</html>
